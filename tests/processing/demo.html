@@ -325,9 +325,9 @@ http://processing.org/learning/2darray/
                 void load_file(piece_id){
                     $.getJSON("data/" + piece_id + ".json", function(data){
                               history = data;
-                              states_length = Object.keys(data).length / 4;
+                              states_length = Object.keys(data).length;
                            });
-
+                    alert(states_length);
                     current_state = 0;
                     Hbar.setPos(0);
                     reset_grid();
