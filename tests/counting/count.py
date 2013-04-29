@@ -40,14 +40,7 @@ def readfile(filename):
         refined_game = []
         for state in game:
             refined_game.append(dict(zip(id,state)))
-            if len(refined_game[-1]) > maxlen:
-                maxlen = len(refined_game[-1])
-            if len(refined_game[-1]) < minlen:
-                minlen = len(refined_game[-1])
         output.append(refined_game)
-
-    print 'maxlen = ',maxlen
-    print 'minlen = ',minlen
     return output
 
 def count(games, piece):
@@ -61,9 +54,6 @@ def count(games, piece):
     #prepare
     record = defaultdict(float) #this is an instance of the lowest most
     longest = max([len(game) for game in games])-1
-    print '---------------------------------------'
-    print 'longest game for %s had %d turns.' % (piece,longest)
-    print '---------------------------------------'
     output = {}
     helper = {}
     for i in range(longest):
@@ -113,7 +103,6 @@ def count(games, piece):
         total = sum(helper[state].values()) #total possible places of a piece at any given state
         output[state] = dict(output[state])
         score = 0
-        print output[state]
         for pos in output[state]:
             if('P' in pos):
                 output[state][pos] /= total
